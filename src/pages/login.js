@@ -15,7 +15,8 @@ const Login = () => {
   
     const login = async (data) => {
         try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
+        //   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -24,7 +25,8 @@ const Login = () => {
           });
       
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            const errorText = await response.text(); // Capture error text from the response
+                throw new Error(`Login failed: ${errorText}`);
           }
       
           const result = await response.json();
@@ -40,8 +42,8 @@ const Login = () => {
             throw new Error('Invalid response format');
           }
         } catch (error) {
-          console.error('Login error:', error);
-          throw error;
+            console.error('Login error:', error);
+            setError(error.message); // Set error message for display
         }
       };
       

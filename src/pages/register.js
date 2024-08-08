@@ -18,7 +18,8 @@ const Register = () => {
             return;
         }
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/register`, {
+            // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/register`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, {
                 method: "POST",
                 body: JSON.stringify({ userName, password }),
                 headers: {
@@ -42,7 +43,7 @@ const Register = () => {
             <div className="row">
                 <div className="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
                     <div className="card shadow">
-                        <Image src="/register2.jpg" alt="" className="card-img" width={500} height={300} />     
+                        <Image src="/register2.jpg" alt="" className="card-img" width={1000} height={600} />     
                         <div className="card-body">
                             <h5 className="card-title">Register</h5>
                             {error && <p className="text-danger">{error}</p>}
