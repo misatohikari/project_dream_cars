@@ -1,0 +1,35 @@
+.navbar {
+  background-color: transparent !important;
+}
+
+.brand {
+  color: rgb(0, 0, 0) !important;
+}
+
+.navLink {
+  color: rgb(0, 0, 0) !important;
+}
+
+.dropdownToggle {
+  color: rgb(0, 0, 0) !important;
+}
+
+.authButtons .navLink {
+  color: white !important;
+}
+
+.dropdown-menu {
+  background-color: black !important;
+}
+
+.dropdown-item {
+  color: white !important;
+}
+
+.dropdown-item:hover {
+  background-color: grey !important;
+}
+
+.dropdown-toggle {
+  color: white !important;
+}
