@@ -1,3 +1,4 @@
+import React from 'react';
 require('dotenv').config()
 
 import SearchPage from '@/components/Search';

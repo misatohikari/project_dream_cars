@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRouter } from 'next/router';
 import { useAtom } from 'jotai';
 import { selectedCarAtom, favoriteAtom, searchHistoryAtom } from '../../../state/atoms';
@@ -27,7 +28,7 @@ const ProductDetailPage = () => {
           console.error('Error fetching car details:', error);
         });
     }
-  }, [id]);
+  }, [id, setHistory, setSelectedCar]);
 
   if (!selectedCar) return <p>Loading...</p>;
 

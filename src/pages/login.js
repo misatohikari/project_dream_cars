@@ -1,45 +1,11 @@
-// // pages/login.js
-// import { useForm } from 'react-hook-form';
-// import { useAuth } from '../useAuth';
-// import { useState } from 'react';
-// import { useRouter } from 'next/router';
-
-// const Login = () => {
-//   const { register, handleSubmit } = useForm();
-//   const { login } = useAuth();
-//   const [error, setError] = useState('');
-//   const router = useRouter();
-
-//   const onSubmit = async (data) => {
-//     try {
-//       await login(data);
-//       router.push('/dashboard');
-//     } catch (err) {
-//       setError('Invalid credentials');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Login</h1>
-//       {error && <p>{error}</p>}
-//       <form onSubmit={handleSubmit(onSubmit)}>
-//         <input {...register('email')} type="email" placeholder="Email" required />
-//         <input {...register('password')} type="password" placeholder="Password" required />
-//         <button type="submit">Login</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAtom } from 'jotai';
 import { userAtom } from '../state/atoms';
 import { setToken } from '../lib/authenticate';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
@@ -79,31 +45,6 @@ const Login = () => {
         }
       };
       
-      
-    // const login = async (data) => {
-    //     console.log('Login function called with data:', data);
-    //     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({ userName: data.userName, password: data.password }),
-    //     });
-
-    //     console.log('Response from login API:', response);
-    //     if (response.ok) {
-    //         const result = await response.json();
-    //         console.log('Login successful, result:', result);
-    //         setUser(result.user);
-    //         setToken(result.token); // Store the token
-    //         return result;
-    //     } else {
-    //         const errorMsg = await response.text();
-    //         console.log('Login failed with message:', errorMsg);
-    //         throw new Error('Invalid credentials');
-    //     }
-    // };
-  
     const onSubmit = async (data) => {
         try {
             console.log('onSubmit called with data:', data);
@@ -120,7 +61,7 @@ const Login = () => {
             <div className="row">
                 <div className="col-md-6 offset-md-4 col-xl-4 offset-xl-4">
                     <div className="card shadow">
-                        <img src="/login.jpg" alt="" className="card-img" />
+                        <Image src="/login.jpg" alt="" className="card-img" width={1000} height={600} />     
                         <div className="card-body">
                             <h5 className="card-title">Login</h5>
                             {error && <p className="text-danger">{error}</p>}
@@ -149,7 +90,7 @@ const Login = () => {
                                 <button className="btn btn-success btn-block" type="submit">Login</button>
                             </form>
                             <p className="mt-3">
-                                Don't have an account? <a href="/register">Register here</a>
+                                Don&apos;t have an account? <Link href="/register">Register here</Link>
                             </p>
                         </div>
                     </div>
@@ -160,5 +101,6 @@ const Login = () => {
 };
 
 export default Login;
+
 
 

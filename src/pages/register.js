@@ -1,5 +1,7 @@
+import React from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const Register = () => {
     const [userName, setUserName] = useState(''); // Adjusted to match schema
@@ -7,6 +9,7 @@ const Register = () => {
     const [password2, setPassword2] = useState('');
     const [error, setError] = useState(null);
     const router = useRouter();
+
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -39,11 +42,7 @@ const Register = () => {
             <div className="row">
                 <div className="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
                     <div className="card shadow">
-                        <img
-                            src="/register2.jpg"
-                            alt="car"
-                            className="card-img"
-                        />
+                        <Image src="/register2.jpg" alt="" className="card-img" width={500} height={300} />     
                         <div className="card-body">
                             <h5 className="card-title">Register</h5>
                             {error && <p className="text-danger">{error}</p>}

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useAtom } from 'jotai';
 import { favoriteAtom } from '../state/atoms';
 import { Card, Col, Row, Container, Button } from 'react-bootstrap';

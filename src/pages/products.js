@@ -1,4 +1,5 @@
 // pages/products.js
+import React from 'react';
 import { useAtom } from 'jotai';
 import { carsAtom } from '../state/atoms';
 import { Container, Row, Col } from 'react-bootstrap';
