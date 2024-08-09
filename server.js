@@ -171,7 +171,7 @@ app.prepare().then(() => {
   const corsOptions = {
     origin: [
       'http://localhost:3000',
-      'https://project-dream-cars.onrender.com', // Use this for your production frontend URL
+      'https://project-dream-cars.vercel.app', // Use this for your production frontend URL
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
