@@ -172,6 +172,7 @@ app.prepare().then(() => {
     origin: [
       'http://localhost:3000',
       'https://project-dream-cars.vercel.app', // Use this for your production frontend URL
+      'https://project-dream-cars-q47k2a1an-misatohikaris-projects.vercel.app',
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
