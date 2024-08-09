@@ -170,7 +170,7 @@ app.prepare().then(() => {
   // CORS configuration
   const corsOptions = {
     origin: [
-      'https://project-dream-cars.onrender.com/login', // Use this for your production frontend URL
+      'https://project-dream-cars.onrender.com', // Use this for your production frontend URL
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
