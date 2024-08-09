@@ -168,16 +168,30 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
 
   // CORS configuration
-  const corsOptions = {
-    origin: [
+  // const corsOptions = {
+  //   origin: [
+  //     'http://localhost:3000',
+  //     'https://project-dream-cars.vercel.app', // Use this for your production frontend URL
+  //     'https://project-dream-cars-q47k2a1an-misatohikaris-projects.vercel.app',
+  //   ],
+  //   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  //   allowedHeaders: ['Content-Type', 'Authorization'],
+  //   credentials: true,
+  // };
+
+    // CORS configuration using environment variables
+    const allowedOrigins = [
       'http://localhost:3000',
-      'https://project-dream-cars.vercel.app', // Use this for your production frontend URL
-      'https://project-dream-cars-q47k2a1an-misatohikaris-projects.vercel.app',
-    ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-  };
+      process.env.NEXT_PUBLIC_FRONTEND_URL, // Your frontend URL from environment variable
+      /\.vercel\.app$/, // Allow Vercel subdomains
+    ];
+  
+    const corsOptions = {
+      origin: allowedOrigins,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      credentials: true,
+    };
   server.use(cors(corsOptions));
 
   // Passport middleware
