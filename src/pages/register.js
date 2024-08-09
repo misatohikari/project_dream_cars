@@ -18,8 +18,8 @@ const Register = () => {
             return;
         }
         try {
-            // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/register`, {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/register`, {
+                // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, {
                 method: "POST",
                 body: JSON.stringify({ userName, password }),
                 headers: {

@@ -57,7 +57,7 @@ const SearchPage = () => {
         className="d-flex flex-column justify-content-center align-items-center mt-5 pt-3"
         style={{
           minHeight: '120vh',
-          backgroundImage: 'url(/home2.jpg)', // Adjust the path as necessary
+          backgroundImage: 'url(/home2.jpg)', 
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

@@ -195,10 +195,14 @@ app.prepare().then(() => {
   const favoritesRoute = require('./src/pages/api/user/favorites');
   const historyRoute = require('./src/pages/api/user/history');
 
-  server.use('/api/login', loginRoute);
-  server.use('/api/register', registerRoute);
-  server.use('/api/favorites', favoritesRoute);
-  server.use('/api/history', historyRoute);
+  // server.use('/api/login', loginRoute);
+  // server.use('/api/register', registerRoute);
+  // server.use('/api/favorites', favoritesRoute);
+  // server.use('/api/history', historyRoute);
+  server.use('/api/user/login', loginRoute);
+  server.use('/api/user/register', registerRoute);
+  server.use('/api/user/favorites', favoritesRoute);
+  server.use('/api/user/history', historyRoute);
 
   // Next.js handling
   server.all('*', (req, res) => handle(req, res));
