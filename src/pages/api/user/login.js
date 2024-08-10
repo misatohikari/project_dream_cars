@@ -6,8 +6,14 @@ import allowCors from '../../utils/cors'; // Adjust path as needed
 const authenticate = passport.authenticate('jwt', { session: false });
 
 const loginHandler = async (req, res) => {
+  console.log('MongoDB connection status in login:', req.mongoConnected);
+
+  if (!req.mongoConnected) {
+    return res.status(503).json({ message: 'Service unavailable: MongoDB not connected' });
+  }
+
   console.log('Login request received:', req.body); // Log request body
-  console.log('MongoDB connection status in login:', global.mongoTest);
+  
 
   if (req.method === 'POST') {
     const { userName, password } = req.body;

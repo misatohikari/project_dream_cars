@@ -86,7 +86,6 @@ const next = require('next');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const dotenv = require('dotenv');
-const { createServer } = require('@vercel/node');
 
 dotenv.config();
 
@@ -118,22 +117,24 @@ app.prepare().then(async () => {
     mongoConnected = false;
   }
 
-  // Make the connection status available globally
+  // Middleware to check MongoDB connection
   server.use((req, res, next) => {
     req.mongoConnected = mongoConnected;
     next();
   });
 
   // Next.js handling
-  server.use((req, res, next) => {
-    if (!mongoConnected) {
-      return res.status(503).json({ message: 'MongoDB not connected' });
-    }
-    next();
+  server.all('*', (req, res) => {
+    return handle(req, res);
   });
-  
-  module.exports = createServer(server); // Export the server for Vercel
+
+  const PORT = process.env.PORT || 3000;
+  server.listen(PORT, (err) => {
+    if (err) throw err;
+    console.log(`Server running on port ${PORT}`);
+  });
 });
+
 
 // // server.js
 
