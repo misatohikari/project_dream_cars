@@ -8,12 +8,6 @@ import connectToDatabase
 const authenticate = passport.authenticate('jwt', { session: false });
 
 const loginHandler = async (req, res) => {
-  console.log('MongoDB connection status in login:', req.mongoConnected);
-
-  if (!req.mongoConnected) {
-    return res.status(503).json({ message: 'Service unavailable: MongoDB not connected' });
-  }
-
   console.log('Login request received:', req.body); // Log request body
   
 
@@ -23,7 +17,6 @@ const loginHandler = async (req, res) => {
     try {
        // Ensure MongoDB connection
       await connectToDatabase();
-      console.log('Login request received:', req.body); // Log request body
       console.log('Finding user...'); // Log before DB operation
       const user = await User.findOne({ userName });
       if (!user) {
