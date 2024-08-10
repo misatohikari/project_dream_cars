@@ -66,7 +66,7 @@ const SearchPage = () => {
           <Col>
             <h1>Search for Vehicles</h1>
             <br />
-            <h5>Find Your Dream Cars!</h5>
+            <h6>Find Your Dream Cars!</h6>
           </Col>
         </Row>
         <br />
