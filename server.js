@@ -104,8 +104,8 @@ app.prepare().then(() => {
 
   // CORS configuration
   const corsOptions = {
-    // origin: ['http://localhost:3000', 'https://project-dream-cars.vercel.app'], // Add your frontend URL here
-    origin: ['https://project-dream-cars.vercel.app'], // Add your frontend URL here
+    origin: ['http://localhost:3000', 'https://project-dream-cars.vercel.app'], // Add your frontend URL here
+    // origin: ['https://project-dream-cars.vercel.app'], // Add your frontend URL here
     // origin: ['http://localhost:3000', 'https://project-dream-cars-j1d8utoms-misatohikaris-projects.vercel.app/'], // Add your frontend URL here
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
