@@ -81,14 +81,12 @@
 //   });
 // });
 
-
-// server.js
-
 const express = require('express');
 const next = require('next');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const dotenv = require('dotenv');
+const { createServer } = require('@vercel/node');
 
 dotenv.config();
 
@@ -96,7 +94,9 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
+let mongoConnected = false; // Global variable for connection status
+
+app.prepare().then(async () => {
   const server = express();
 
   // Middleware
@@ -109,30 +109,83 @@ app.prepare().then(() => {
   require('./src/pages/user-api/config/passport')(passport);
 
   // Connect to MongoDB
-  // mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  //   .then(() => console.log('MongoDB connected'))
-  //   .catch(err => console.log('MongoDB connection error:', err));
-  mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-      console.log('MongoDB connected');
-      global.mongoTest = true; // Set global variable to true when connected
-    })
-    .catch(err => {
-      console.log('MongoDB connection error:', err);
-      global.mongoTest = false; // Set global variable to false when connection fails
-    });
+  try {
+    await mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+    console.log('MongoDB connected');
+    mongoConnected = true;
+  } catch (err) {
+    console.log('MongoDB connection error:', err);
+    mongoConnected = false;
+  }
+
+  // Make the connection status available globally
+  server.use((req, res, next) => {
+    req.mongoConnected = mongoConnected;
+    next();
+  });
 
   // Next.js handling
-  server.all('*', (req, res) => {
-    return handle(req, res);
+  server.use((req, res, next) => {
+    if (!mongoConnected) {
+      return res.status(503).json({ message: 'MongoDB not connected' });
+    }
+    next();
   });
-
-  const PORT = process.env.PORT || 3000;
-  server.listen(PORT, (err) => {
-    if (err) throw err;
-    console.log(`Server running on port ${PORT}`);
-  });
+  
+  module.exports = createServer(server); // Export the server for Vercel
 });
+
+// // server.js
+
+// const express = require('express');
+// const next = require('next');
+// const mongoose = require('mongoose');
+// const passport = require('passport');
+// const dotenv = require('dotenv');
+
+// dotenv.config();
+
+// const dev = process.env.NODE_ENV !== 'production';
+// const app = next({ dev });
+// const handle = app.getRequestHandler();
+
+// app.prepare().then(() => {
+//   const server = express();
+
+//   // Middleware
+//   server.use(express.json());
+
+//   // Passport middleware
+//   server.use(passport.initialize());
+
+//   // Passport config
+//   require('./src/pages/user-api/config/passport')(passport);
+
+//   // Connect to MongoDB
+//   // mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+//   //   .then(() => console.log('MongoDB connected'))
+//   //   .catch(err => console.log('MongoDB connection error:', err));
+//   mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => {
+//       console.log('MongoDB connected');
+//       global.mongoTest = true; // Set global variable to true when connected
+//     })
+//     .catch(err => {
+//       console.log('MongoDB connection error:', err);
+//       global.mongoTest = false; // Set global variable to false when connection fails
+//     });
+
+//   // Next.js handling
+//   server.all('*', (req, res) => {
+//     return handle(req, res);
+//   });
+
+//   const PORT = process.env.PORT || 3000;
+//   server.listen(PORT, (err) => {
+//     if (err) throw err;
+//     console.log(`Server running on port ${PORT}`);
+//   });
+// });
 
 // const express = require('express');
 // const next = require('next');
