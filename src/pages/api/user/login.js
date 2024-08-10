@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import User from '../../user-api/models/User'; // Ensure this path is correct
 import passport from 'passport';
-import allowCors from '../../../utils/cors'; // Adjust path as needed
+import allowCors from '../../utils/cors'; // Adjust path as needed
 
 const authenticate = passport.authenticate('jwt', { session: false });
 
