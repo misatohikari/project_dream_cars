@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"next dev\" \"nodemon server.js\"",
-    "build": "next build", 
+    "build": "next build",
     "start": "NODE_ENV=production concurrently \"next start\" \"node server.js\"",
     "lint": "next lint",
     "server": "nodemon server.js"
