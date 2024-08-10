@@ -7,6 +7,7 @@ const authenticate = passport.authenticate('jwt', { session: false });
 
 const loginHandler = async (req, res) => {
   console.log('Login request received:', req.body); // Log request body
+  console.log('MongoDB connection status in login:', global.mongoTest);
 
   if (req.method === 'POST') {
     const { userName, password } = req.body;

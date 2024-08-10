@@ -109,9 +109,18 @@ app.prepare().then(() => {
   require('./src/pages/user-api/config/passport')(passport);
 
   // Connect to MongoDB
+  // mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  //   .then(() => console.log('MongoDB connected'))
+  //   .catch(err => console.log('MongoDB connection error:', err));
   mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log('MongoDB connection error:', err));
+    .then(() => {
+      console.log('MongoDB connected');
+      global.mongoTest = true; // Set global variable to true when connected
+    })
+    .catch(err => {
+      console.log('MongoDB connection error:', err);
+      global.mongoTest = false; // Set global variable to false when connection fails
+    });
 
   // Next.js handling
   server.all('*', (req, res) => {

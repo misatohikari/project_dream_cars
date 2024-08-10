@@ -9,3 +9,4 @@ export const isAuthenticatedAtom = atom((get) => !!get(userAtom));
 
 export const favoriteAtom = atom([]);
 export const searchHistoryAtom = atom([]);
+
