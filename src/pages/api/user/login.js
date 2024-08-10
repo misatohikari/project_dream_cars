@@ -6,7 +6,8 @@ import connectToDatabase
  from '@/pages/utils/mongodb';
 
 const authenticate = passport.authenticate('jwt', { session: false });
-
+ 
+// use Next.js API route is stead of express routes since CORS with Next.js requires Next.js API routes - next.js api routes are designed to integrate with middleware like allowCors
 const loginHandler = async (req, res) => {
   console.log('Login request received:', req.body); // Log request body
   
@@ -48,3 +49,4 @@ const loginHandler = async (req, res) => {
 };
 
 export default allowCors(loginHandler);
+
