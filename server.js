@@ -81,12 +81,13 @@
 //   });
 // });
 
+
+// server.js
+
 const express = require('express');
 const next = require('next');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const passport = require('passport');
-const cors = require('cors');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -99,17 +100,7 @@ app.prepare().then(() => {
   const server = express();
 
   // Middleware
-  server.use(bodyParser.urlencoded({ extended: false }));
-  server.use(bodyParser.json());
-
-  // CORS configuration
-  const corsOptions = {
-    origin: ['http://localhost:3000', 'https://project-dream-cars.vercel.app'], // Add your frontend URL here
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-  };
-  server.use(cors(corsOptions));
+  server.use(express.json());
 
   // Passport middleware
   server.use(passport.initialize());
@@ -121,17 +112,6 @@ app.prepare().then(() => {
   mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
-
-  // Use individual route handlers
-  const loginRoute = require('./src/pages/api/user/login');
-  const registerRoute = require('./src/pages/api/user/register');
-  const favoritesRoute = require('./src/pages/api/user/favorites');
-  const historyRoute = require('./src/pages/api/user/history');
-
-  server.use('/api/login', loginRoute);
-  server.use('/api/register', registerRoute);
-  server.use('/api/favorites', favoritesRoute);
-  server.use('/api/history', historyRoute);
 
   // Next.js handling
   server.all('*', (req, res) => {
