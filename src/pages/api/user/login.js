@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken';
 import User from '../../user-api/models/User'; // Ensure this path is correct
 import passport from 'passport';
 import allowCors from '../../utils/cors'; // Adjust path as needed
+import connectToDatabase
+ from '@/pages/utils/mongodb';
 
 const authenticate = passport.authenticate('jwt', { session: false });
 
@@ -19,6 +21,9 @@ const loginHandler = async (req, res) => {
     const { userName, password } = req.body;
 
     try {
+       // Ensure MongoDB connection
+      await connectToDatabase();
+      console.log('Login request received:', req.body); // Log request body
       console.log('Finding user...'); // Log before DB operation
       const user = await User.findOne({ userName });
       if (!user) {
