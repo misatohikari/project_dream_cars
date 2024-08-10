@@ -95,7 +95,7 @@ const ProductDetailPage = () => {
             <Col md={4}>
               <Card.Img 
                 variant="top" 
-                src="/carDetail1.jpg" 
+                src="/products1.jpg" 
                 alt="Car Detail Picture" 
                 style={{ width: '100%', height: 'auto' }}
               />
