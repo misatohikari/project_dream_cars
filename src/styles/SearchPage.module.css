@@ -1,0 +1,70 @@
+.carouselContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .carouselWrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .carouselItem {
+    flex: 0 0 auto;
+    width: 200px; 
+    height: 200px; 
+    margin: 0 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+  }
+  
+  .cardContent {
+    text-align: center;
+  }
+  
+  .cardImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .cardText {
+    margin-top: 5px;
+    font-size: 0.875rem;
+  }
+  
+  .navButton {
+    font-size: 1.5rem;
+    color: black;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px; 
+    border-radius: 50%;
+    background: white; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black; 
+  }
+  
+  .navButtonPrev {
+    left: 10px;
+  }
+  
+  .navButtonNext {
+    right: 10px;
+  }
+  
+  .makeLogo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
