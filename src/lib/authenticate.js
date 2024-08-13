@@ -36,22 +36,22 @@ export function removeToken(){
 //       "content-type": "application/json"
 //     }
 //   });
-export async function authenticateUser(userName, password) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
-    method: 'POST',
-    body: JSON.stringify({ userName, password }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+// export async function authenticateUser(userName, password) {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
+//     method: 'POST',
+//     body: JSON.stringify({ userName, password }),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
 
-  const data = await res.json();
+//   const data = await res.json();
 
-  if(res.status === 200){
-    setToken(data.token);
-    return true;
-  }else{
-    throw new Error(data.message);
-  } 
-}
+//   if(res.status === 200){
+//     setToken(data.token);
+//     return true;
+//   }else{
+//     throw new Error(data.message);
+//   } 
+// }
 

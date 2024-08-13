@@ -48,7 +48,7 @@ const Products = ({ cars = [] }) => {
                 <Card style={{ height: '450px' }}> {/* Set a fixed height for consistency */}
                   <Card.Img 
                     variant="top" 
-                    src="/products1.jpg" 
+                    src="/products1.webp" 
                     alt="Car Detail Picture" 
                     style={{ width: '100%', height: '150px', objectFit: 'cover' }} 
                   />

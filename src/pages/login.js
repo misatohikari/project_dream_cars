@@ -64,7 +64,7 @@ const Login = () => {
             <div className="row">
                 <div className="col-md-6 offset-md-4 col-xl-4 offset-xl-4">
                     <div className="card shadow">
-                        <Image src="/login.jpg" alt="" className="card-img" width={1000} height={600} layout='responsive' priority/>     
+                        <Image src="/login.webp" alt="" className="card-img" width={1000} height={600} layout='responsive' priority/>     
                         <div className="card-body">
                             <h5 className="card-title">Login</h5>
                             {error && <p className="text-danger">{error}</p>}

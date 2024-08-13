@@ -22,7 +22,7 @@ export default function Dashboard() {
     <ProtectedRoute>
       <Container className="d-flex flex-column justify-content-center align-items-center mt-5 pt-3"
       style={{ 
-        backgroundImage: 'url(/home.jpg)', 
+        backgroundImage: 'url(/home.webp)', 
         backgroundSize: 'cover', // Ensure the image covers the whole container
         backgroundPosition: 'center', // Center the image
         minHeight: '120vh' // Ensure the container takes full viewport height
