@@ -96,11 +96,11 @@ const SearchPage = () => {
           backgroundPosition: 'center',
         }}
       >
-        <Row className="text-center text-white">
+        <Row className="text-center text-grey">
           <Col>
             <h1>Search for Vehicles</h1>
             <br />
-            <h6>Find Your Dream Cars!</h6>
+            <h5>Find Your Dream Cars!</h5>
           </Col>
         </Row>
         <br />
@@ -108,7 +108,7 @@ const SearchPage = () => {
           <Col xs="auto">
             <div
               className="p-4 rounded shadow bg-white d-flex align-items-center"
-              style={{ width: '100%', maxWidth: '800px' }}
+              style={{ width: '100%', maxWidth: '600px' }}
             >
               <Form onSubmit={handleSearch} className="d-flex w-100">
                 <Form.Group controlId="formMake" className="mb-0 me-2 flex-fill">
