@@ -13,6 +13,7 @@ const Login = () => {
     const router = useRouter();
     const [user, setUser] = useAtom(userAtom);
   
+    // function to call user api for login
     const login = async (data) => {
         try {
           const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/login`, {
@@ -32,7 +33,7 @@ const Login = () => {
       
           console.log('Parsed response:', result); // Log parsed response
       
-          if (result.user && result.token) {
+          if (result.user && result.token) { // if find user and token is generated
             setUser(result.user);
             setToken(result.token); // Ensure the token format is correct
             console.log(`User is:`, result.user)
@@ -46,7 +47,7 @@ const Login = () => {
         }
       };
       
-    const onSubmit = async (data) => {
+    const onSubmit = async (data) => { // once user submit the login data, call the login function with the passed data. if success, go to dashboard. 
         try {
             console.log('onSubmit called with data:', data);
             await login(data);

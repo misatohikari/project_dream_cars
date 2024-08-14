@@ -7,6 +7,7 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
 
+// Function to connect to the MongoDB database
 async function connectToDatabase() {
     if (cached.conn) {
       return cached.conn;

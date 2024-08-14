@@ -6,17 +6,17 @@ import { Container, Card, Button, Col, Row } from 'react-bootstrap';
 import React, { useState } from 'react';
 import Pagination from './Pagination';
 
-
-
+// Define the Products component, accepting cars as a prop with a default value of an empty array
 const Products = ({ cars = [] }) => {
-  const router = useRouter();
-  const [, setSelectedCar] = useAtom(selectedCarAtom);
-  const [user] = useAtom(userAtom);
+  const router = useRouter(); //Get router instance
+  const [, setSelectedCar] = useAtom(selectedCarAtom); // Access and update selected car state using Jotai
+  const [user] = useAtom(userAtom); // Access user state using Jotai
+  // pagination logic and setup
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const totalPages = Math.ceil(cars.length / itemsPerPage);
 
-
+  // handle viewing details of car
   const handleViewDetails = (car) => {
     if (!user) {
       // If user is not authenticated, redirect to login page
@@ -27,6 +27,7 @@ const Products = ({ cars = [] }) => {
       router.push(`/product/${car.id}/page`);
     }
   };
+  // Format price with commas for thousands
   const formatPrice = (price) => {
         return price ? price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : 'N/A';
       };
@@ -39,13 +40,13 @@ const Products = ({ cars = [] }) => {
     <>
       <Container
         className="mt-5 pt-3"
-        style={{ marginTop: '70px' }} // Adjust this value based on your navbar height
+        style={{ marginTop: '70px' }} 
       >
         <Row>
           {Array.isArray(displayedCars) && displayedCars.length > 0 ? (
             displayedCars.map(car => (
               <Col key={car.id} sm={6} md={4} lg={3}>
-                <Card style={{ height: '450px' }}> {/* Set a fixed height for consistency */}
+                <Card style={{ height: '450px' }}> 
                   <Card.Img 
                     variant="top" 
                     src="/products1.webp" 
@@ -64,7 +65,7 @@ const Products = ({ cars = [] }) => {
                         {car.description}
                       </Card.Text>
                     </div>
-                    <hr style={{ margin: '10px 0' }}/> {/* Adjust margin as needed */}
+                    <hr style={{ margin: '10px 0' }}/> 
                     <div 
                       style={{ 
                         display: 'flex', 

@@ -11,14 +11,15 @@ const Register = () => {
     const router = useRouter();
 
 
+    // function to handle register - called once user press register button with their data
     const handleRegister = async (e) => {
         e.preventDefault();
-        if (password !== password2) {
+        if (password !== password2) { // check password
             setError('Passwords do not match');
             return;
         }
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/register`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/register`, { // fetch user api for register. 
                 // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, {
                 method: "POST",
                 body: JSON.stringify({ userName, password }),
@@ -32,7 +33,7 @@ const Register = () => {
                 throw new Error(`Failed to register user: ${errorText}`);
             }
 
-            router.push('/login');
+            router.push('/login'); // if response was okay, redirect to login page. 
         } catch (err) {
             setError(err.message);
         }

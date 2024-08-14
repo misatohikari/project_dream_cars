@@ -1,27 +1,21 @@
 const passport = require('passport');
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
-const mongoose = require('mongoose');
 require('dotenv').config()
 
-// const UserSchema = new mongoose.Schema({
-//   userName: { type: String, required: true, unique: true },
-//   password: { type: String, required: true },
-//   favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Car' }],
-//   history: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Car' }],
-// });
-
-// const User = mongoose.model('User', UserSchema);
-
+// Configuration options for JWT strategy
 const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET
 };
 
+// Export a function that sets up the JWT strategy for passport
 module.exports = (passport) => {
   passport.use(
     new JwtStrategy(opts, async (jwt_payload, done) => {
       try {
+        // Find the user by ID from the JWT payload
         const user = await User.findById(jwt_payload.id);
+         // If user is found, return user
         if (user) {
           return done(null, user);
         }

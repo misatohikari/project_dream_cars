@@ -16,7 +16,7 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     if (id) {
-      getCarDetails(id)
+      getCarDetails(id) // call car api with id to get the details 
         .then(car => {
           console.log('Data returned from car details API:', car); 
           setSelectedCar(car);
@@ -32,6 +32,7 @@ const ProductDetailPage = () => {
 
   if (!selectedCar) return <p>Loading...</p>;
 
+  // function to render color swatch. - rgb is returned so this visually shows the colour based on the rbd
   const renderColorSwatch = (color) => {
     if (!color.rgb) {
       return <span>{color.name} (Color data not available)</span>;
@@ -67,6 +68,7 @@ const ProductDetailPage = () => {
     );
   };
 
+  // user close model, and go back to /products route
   const handleCloseModal = () => {
     setShowModal(false);
     router.push('/products'); // Navigate back to products

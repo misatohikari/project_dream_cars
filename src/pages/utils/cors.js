@@ -1,4 +1,6 @@
 // utils/cors.js
+
+// Function to set CORS headers and handle preflight requests
 const allowCors = fn => async (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Origin', '*');

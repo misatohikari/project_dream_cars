@@ -8,6 +8,8 @@ import connectToDatabase
 const authenticate = passport.authenticate('jwt', { session: false });
  
 // use Next.js API route is stead of express routes since CORS with Next.js requires Next.js API routes - next.js api routes are designed to integrate with middleware like allowCors
+
+// Define the login handler function
 const loginHandler = async (req, res) => {
   console.log('Login request received:', req.body); // Log request body
   
@@ -30,6 +32,7 @@ const loginHandler = async (req, res) => {
         return res.status(400).json({ message: 'Invalid credentials' });
       }
 
+      //set JWT token
       console.log('Signing JWT...'); // Log before signing JWT
       const payload = { id: user.id, userName: user.userName };
       jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {

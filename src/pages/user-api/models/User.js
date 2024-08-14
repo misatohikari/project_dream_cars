@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
+//Define the user schema with required fields and references to other models
 const UserSchema = new Schema({
     userName: { type: String, required: true, unique: true },
     password: { type: String, required: true },
