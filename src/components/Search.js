@@ -147,7 +147,7 @@ const SearchPage = () => {
         <br />
         <Row className="text-center mb-3">
           <Col>
-            <h2 className="text-white">Explore Our Models</h2>
+            <h3 className="text-white">Explore Our Models</h3>
           </Col>
         </Row>
         <Row className="justify-content-center align-items-center position-relative">
