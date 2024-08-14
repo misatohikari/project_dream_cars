@@ -3,7 +3,7 @@ import { favoriteAtom } from '../state/atoms';
 import { Card, Col, Row, Container, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import Pagination from './Pagination'; // Import your Pagination component
+import Pagination from './Pagination';
 
 const Favorite = () => {
   const [favorites] = useAtom(favoriteAtom);
